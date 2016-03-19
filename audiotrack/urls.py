@@ -19,6 +19,6 @@ from .views import AudiotrackList, AudiotrackView
 
 urlpatterns = [
     url(r'^(?P<pk>\d+)/$', AudiotrackView.as_view(), name="detail"),
-    url(r'^(?P<audiotrack_id>\d+)/$', 'audiotrack.views.show_audiotrack'),
+    #url(r'^(?P<audiotrack_id>\d+)/$', 'audiotrack.views.show_audiotrack'),
     url(r'^$', AudiotrackList.as_view(), name="audiotrack_list"),
 ]
