@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Audiotracks
+{% endblock %}
+
+{% block content %}
+    {% for at in object_list %}
+    <div>
+        <div>{{ at.name }}</div>
+        <div>{{ at.url }}</div>
+    </div>
+{% endfor %}
+{% endblock %}
