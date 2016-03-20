@@ -26,8 +26,11 @@
 <nav>
     <div class="nav-wrapper deep-purple lighten-2">
         <a href="#" class="brand-logo right">Profile(?)</a>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <ul id="audiotracks_menu_button" class="left hide-on-med-and-down">
             <li><a href="{% url 'audiotrack:audiotrack_list' %}">Audiotracks</a></li>
+        </ul>
+        <ul id="playlists_menu_button" class="left hide-on-med-and-down">
+            <li><a href="{% url 'playlist:playlist_list' %}">Playlists</a></li>
         </ul>
     </div>
 </nav>

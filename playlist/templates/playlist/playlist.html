@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+Title:
+{{ playlist.name }}
+{% endblock %}
+
+{% block content %}
+{% for audiotrack in playlist.audiotracks.all %}
+
+<div class="row">
+    <div class="col s20 m5">
+        <div class="card deep-purple darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">{{ audiotrack.name }}</span>
+
+                <p>{{ audiotrack.url }}</p>
+            </div>
+            <div class="card-action">
+                <a href="{% url 'audiotrack:detail' pk=audiotrack.id %}">Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}
