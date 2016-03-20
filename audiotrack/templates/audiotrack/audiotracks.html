@@ -6,9 +6,25 @@
 
 {% block content %}
     {% for at in object_list %}
-    <div>
+
+    <div class="row">
+        <div class="col s20 m5">
+          <div class="card deep-purple darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">{{ at.name }}</span>
+              <p>{{ at.url }}</p>
+            </div>
+            <div class="card-action">
+              <a href="{% url 'audiotrack:detail' pk=at.id %}">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!--<div>
         <div>{{ at.name }}</div>
         <div>{{ at.url }}</div>
-    </div>
+        <div><a href="{% url 'audiotrack:detail' pk=at.id %}" >Open audiotrack</a> </div>
+    </div>-->
 {% endfor %}
 {% endblock %}
