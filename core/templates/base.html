@@ -1,14 +1,40 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
     <title>Title</title>
+
+    <link type="text/css" rel="stylesheet" href="{% static 'core/css/materialize.min.css' %}"
+          media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'core/css/style.css' %}">
+
 </head>
 <body>
 
-    {% block title %} {% endblock %}
+<!-- jQuery is required by Materialize to function -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript">
+    $primary-color: color("blue", "base");
 
-    {% block content %} {% endblock %}
+</script>
+
+<nav>
+    <div class="nav-wrapper deep-purple lighten-2">
+        <a href="#" class="brand-logo right">Profile(?)</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="{% url 'audiotrack:audiotrack_list' %}">Audiotracks</a></li>
+        </ul>
+    </div>
+</nav>
+
+{% block title %} {% endblock %}
+
+{% block content %} {% endblock %}
 
 </body>
 </html>
