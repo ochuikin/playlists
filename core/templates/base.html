@@ -21,11 +21,20 @@
 <script type="text/javascript">
     $primary-color: color("blue", "base");
 
+
+
 </script>
 
 <nav>
     <div class="nav-wrapper deep-purple lighten-2">
-        <a href="#" class="brand-logo right">Profile(?)</a>
+        <div class="brand-logo right">
+            {{ user }}
+            {% if user.is_anonymous %}
+            <a href="{% url 'django.contrib.auth.views.login' %}">login</a>
+            {% else %}
+            <a href="{% url 'django.contrib.auth.views.logout' %}">logout</a>
+            {% endif %}
+        </div>
         <ul id="audiotracks_menu_button" class="left hide-on-med-and-down">
             <li><a href="{% url 'audiotrack:audiotrack_list' %}">Audiotracks</a></li>
         </ul>
