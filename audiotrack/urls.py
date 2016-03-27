@@ -14,10 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from .views import AudiotrackList, AudiotrackView
+from .views import AudiotrackList, AudiotrackView, AudiotrackCreateView
 
 urlpatterns = [
     url(r'^(?P<pk>\d+)/$', AudiotrackView.as_view(), name="detail"),
     #url(r'^(?P<audiotrack_id>\d+)/$', 'audiotrack.views.show_audiotrack'),
+    url(r'^create/$', AudiotrackCreateView.as_view(), name='audiotrack_create'),
     url(r'^$', AudiotrackList.as_view(), name="audiotrack_list"),
 ]
