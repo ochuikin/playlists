@@ -19,8 +19,6 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript">
-    $primary-color: color("blue", "base");
-
 
 
 </script>
@@ -40,6 +38,9 @@
         </ul>
         <ul id="playlists_menu_button" class="left hide-on-med-and-down">
             <li><a href="{% url 'playlist:playlist_list' %}">Playlists</a></li>
+        </ul>
+        <ul id="create_audiotrack_menu_button" class="left hide-on-med-and-down">
+            <li><a href="{% url 'audiotrack:audiotrack_create' %}">Create audiotrack</a></li>
         </ul>
     </div>
 </nav>
