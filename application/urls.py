@@ -22,6 +22,6 @@ urlpatterns = [
     url(r'^audiotrack/', include('audiotrack.urls', namespace="audiotrack")),
     url(r'^playlists/', include('playlist.urls', namespace="playlist")),
     url(r'^login/$', login, {'template_name': 'registration/login.html'}, name="login"),
-    url(r'^logout/$', logout, {'template_name': 'registration/logout.html'}, name="logout"),
+    url(r'^logout/$', logout, {'template_name': 'registration/logged.html'}, name="logout"),
     # url('^', include('django.contrib.auth.urls'))
 ]

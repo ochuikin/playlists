@@ -28,9 +28,9 @@
         <div class="brand-logo right">
             {{ user }}
             {% if user.is_anonymous %}
-            <!--<a href="{% url 'application:login' %}">login</a> #chage to name-->
+            <a href="{% url 'login' %}">login</a>
             {% else %}
-            <!--<a href="{% url 'application:logout' %}">logout</a>-->
+            <a href="{% url 'logout' %}">logout</a>
             {% endif %}
         </div>
         <ul id="audiotracks_menu_button" class="left hide-on-med-and-down">
