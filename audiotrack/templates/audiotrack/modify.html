@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+<div> Name: {{ audiotrack.name }}</div>
+<div> Url: {{ audiotrack.url }}</div>
+{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">Save</input>
+</form>
+
+
+{% endblock %}

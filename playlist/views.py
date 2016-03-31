@@ -11,7 +11,6 @@ class PlaylistView(DetailView):
     template_name = 'playlist/playlist.html'
     context_object_name = 'playlist'
 
-
 class PlaylistList(ListView):
 
     model = Playlist

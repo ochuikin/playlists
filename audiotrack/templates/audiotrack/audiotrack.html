@@ -2,9 +2,14 @@
 
 {% block title %}
     Title:
-    {{ audiotrack.name }}
+    <div> {{ audiotrack.name }} </div>
+    <div> {{ audiotrack.url }} </div>
 {% endblock %}
 
 {% block content %}
-    <div>{{ audiotrack.url }}</div>
+{% if audiotrack.author == user %}
+    <div>
+        <a href="{% url 'audiotrack:modify' pk=audiotrack.id %}">Modify</a>
+    </div>
+{% endif %}
 {% endblock %}

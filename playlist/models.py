@@ -22,4 +22,3 @@ class Playlist(models.Model):
         verbose_name = u'Плейлист'
         verbose_name_plural = u'Плейлисты'
         ordering = ('-name', )
-

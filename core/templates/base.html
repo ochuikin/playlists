@@ -8,7 +8,7 @@
 
     <title>Title</title>
 
-    <link type="text/css" rel="stylesheet" href="{% static 'core/css/materialize.min.css' %}"
+    <link type="text/css" rel="stylesheet" href="{% static 'core/css/materialize.css' %}"
           media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="{% static 'core/css/style.css' %}">
 
@@ -28,9 +28,9 @@
         <div class="brand-logo right">
             {{ user }}
             {% if user.is_anonymous %}
-            <a href="{% url 'django.contrib.auth.views.login' %}">login</a>
+            <!--<a href="{% url 'application:login' %}">login</a> #chage to name-->
             {% else %}
-            <a href="{% url 'django.contrib.auth.views.logout' %}">logout</a>
+            <!--<a href="{% url 'application:logout' %}">logout</a>-->
             {% endif %}
         </div>
         <ul id="audiotracks_menu_button" class="left hide-on-med-and-down">
