@@ -9,3 +9,5 @@ class PlaylistCreateForm(forms.Form):
     #name = forms.CharField(max_length=255)
     is_private = forms.BooleanField(required=False)
 
+
+
