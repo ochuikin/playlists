@@ -10,6 +10,7 @@ class Audiotrack(models.Model):
     name = models.CharField(verbose_name=u'Название трека', max_length=255)
 
     url = models.CharField(verbose_name=u'Адрес трека', max_length=255)
+    audio_file = models.FileField(default=None)
 
     created_at = models.DateTimeField(verbose_name=u'Дата создания', auto_now_add=True)
     changed_at = models.DateTimeField(verbose_name=u'Дата последнего изменения', auto_now_add=True)
