@@ -1,28 +1,28 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:100,400,300,600,700);
-* {
+/** {
   padding: 0;
   margin: 0;
   font-weight: 300;
   box-sizing: border-box;
   font-family: "Open Sans";
   font-weight: 300;
-  color: #888;
+  *//*color: #888;*//*
   outline: none;
-}
+}*/
 
 li {
   float: left;
   list-style: none;
 }
 
-html {
+/*html {
   font-size: 100%;
   font-size: 14px;
-}
+}*/
 
-body {
+/*body {
   font-size: 1rem;
-}
+}*/
 
 /*html {
   background: #383B44;

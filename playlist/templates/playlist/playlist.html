@@ -13,6 +13,10 @@ Title:
 <div>Public playlist</div>
 {% endif %}
 
+<div>
+    <button id="play_it">Play</button>
+</div>
+
 {% for audiotrack in playlist.audiotracks.all %}
 <div class="row">
     <div class="col s20 m5">
@@ -30,6 +34,25 @@ Title:
 </div>
 {% endfor %}
 
+<script>
+    $('#play_it').click(function(){
+        var t = {
+            playlist: [
+                {% for audiotrack in playlist.audiotracks.all %}
+                {
+                    file: "http://cs1-49v4.vk-cdn.net/p6/21c98193639bdb.mp3",
+                    thumb: "resources/thumbs/01.jpg",
+                    trackName: "{{ audiotrack.name }}",
+                    trackArtist: "Tobu & Syndec",
+                    trackAlbum: "Single",
+                    },
+                {% endfor %}
+            ]
+        }
+        $(".jAudio--player").jAudio(t);
+    });
+
+</script>
 
 
 {% endblock %}
