@@ -416,3 +416,24 @@
   }
 
 })(jQuery)
+
+$(document).ready(function(){
+     $('#play_it').click(function(){
+        var t = {
+            playlist: []
+        };
+        var arr = $('#player_data').data('songs-urls').split(',');
+        arr.forEach(function(item, i, arr){
+        if (item)
+        t.playlist.push({
+            file: item,
+            thumb: "resources/thumbs/01.jpg",
+            trackName: item,
+            trackArtist: "Tobu & Syndec",
+            trackAlbum: "Single",
+        })});
+
+        //t.playlist.push($('#player_data').data('songs-urls').split(','));
+        $(".jAudio--player").jAudio(t);
+     })
+});
