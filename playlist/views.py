@@ -1,8 +1,15 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+try:
+    from django.utils import simplejson as json
+except ImportError:
+    import json
 from django.shortcuts import resolve_url
 from django.views.generic import ListView, DetailView, CreateView
 from .forms import PlaylistCreateForm
 from .models import Playlist
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+from django.shortcuts import get_object_or_404
 
 
 class PlaylistView(DetailView):
@@ -37,9 +44,21 @@ class PlaylistCreateView(CreateView):
         return resolve_url('playlist:playlist_detail', pk=self.object.pk)
 
 
-    # def dispatch(self, request, *args, **kwargs):
-    #     self.sort_field = request.GET.get('sort_field')
-    #     return super(PlaylistList, self).dispatch(request, *args, **kwargs)
-    #
-    # def get_queryset(self):
-    #     return Playlist.objects.all().order_by(self.sort_field)[:10]
+@login_required
+@require_POST
+def like(request):
+    if request.method == 'POST':
+        user = request.user
+        slug = request.POST.get('slug', None)
+        playlist = get_object_or_404(Playlist, slug=slug)
+
+        if playlist.likes.filter(id=user.id).exists():
+            playlist.likes.remove(user)
+            message = 'You disliked this'
+        else:
+            playlist.likes.add(user)
+            message = 'You liked this'
+
+    ctx = {'likes_count': playlist.total_likes, 'message': message}
+    # use mimetype instead of content_type if django < 5
+    return HttpResponse(json.dumps(ctx), content_type='application/json')

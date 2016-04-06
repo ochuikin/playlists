@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/$', PlaylistView.as_view(), name="playlist_detail"),
     url(r'^$', PlaylistList.as_view(), name="playlist_list"),
     url(r'^create/$', PlaylistCreateView.as_view(), name="playlist_create"),
+    url(r'^like/$', 'playlist.views.like', name='like'),
 ]

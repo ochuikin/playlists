@@ -7,6 +7,30 @@ Title:
 
 {% block content %}
 
+<div id="showl">
+    {{ playlist.likes.count }}
+</div>
+<div>
+    <input type="button" id="like" name="{{ playlist.slug }}" value="Like" />
+</div>
+
+<script>
+$('#like').click(function(){
+      $.ajax({
+               type: "POST",
+               url: "{% url 'playlist:like' %}",
+               data: {'slug': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      $('#showl').text(response.likes_count)
+                },
+                error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+          });
+    })
+</script>
+
 {% if playlist.is_private %}
 <div>Private playlist</div>
 {% else %}
@@ -17,22 +41,25 @@ Title:
     <button id="play_it">Play</button>
 </div>
 
-{% for audiotrack in playlist.audiotracks.all %}
-<div class="row">
-    <div class="col s20 m5">
-        <div class="card deep-purple darken-1">
-            <div class="card-content white-text">
-                <span class="card-title">{{ audiotrack.name }}</span>
+<table>
+    <thead>
+    <tr>
+        <th data-field="id">Name</th>
+        <th data-field="name">Url</th>
+        <th data-field="price">Item Price</th>
+    </tr>
+    </thead>
 
-                <p>{{ audiotrack.url }}</p>
-            </div>
-            <div class="card-action">
-                <a href="{% url 'audiotrack:detail' pk=audiotrack.id %}">Details</a>
-            </div>
-        </div>
-    </div>
-</div>
-{% endfor %}
+    <tbody>
+    {% for audiotrack in playlist.audiotracks.all %}
+    <tr>
+        <td>{{ audiotrack.name }}</td>
+        <td><a href="{% url 'audiotrack:detail' pk=audiotrack.id %}">Url</a></td>
+        <td>tmp</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
 <script>
     $('#play_it').click(function(){
@@ -40,7 +67,7 @@ Title:
             playlist: [
                 {% for audiotrack in playlist.audiotracks.all %}
                 {
-                    file: "http://cs1-49v4.vk-cdn.net/p6/21c98193639bdb.mp3",
+                    file: "{{ audiotrack.url }}",
                     thumb: "resources/thumbs/01.jpg",
                     trackName: "{{ audiotrack.name }}",
                     trackArtist: "Tobu & Syndec",
@@ -51,6 +78,7 @@ Title:
         }
         $(".jAudio--player").jAudio(t);
     });
+
 
 </script>
 
