@@ -1,10 +1,12 @@
+from django.db.models import Sum
 from django.http import HttpResponse
+
 try:
     from django.utils import simplejson as json
 except ImportError:
     import json
 from django.shortcuts import resolve_url
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .forms import PlaylistCreateForm
 from .models import Playlist
 from django.contrib.auth.decorators import login_required
@@ -13,20 +15,22 @@ from django.shortcuts import get_object_or_404
 
 
 class PlaylistView(DetailView):
-
     model = Playlist
     template_name = 'playlist/playlist.html'
     context_object_name = 'playlist'
 
+    def get_context_data(self, **kwargs):
+        context = super(PlaylistView, self).get_context_data(**kwargs)
+        context["sum_length"] = self.object.audiotracks.all().aggregate(a=Sum('length'))['a']
+        return context
+
 
 class PlaylistList(ListView):
-
     model = Playlist
     template_name = 'playlist/playlists.html'
 
 
 class PlaylistCreateView(CreateView):
-
     model = Playlist
     fields = ('name', 'is_private')
     template_name = 'playlist/playlist_create.html'
@@ -44,11 +48,24 @@ class PlaylistCreateView(CreateView):
         return resolve_url('playlist:playlist_detail', pk=self.object.pk)
 
 
+class PlaylistUpdate(UpdateView):
+    model = Playlist
+
+    context_object_name = 'playlist'
+    template_name = 'playlist/update.html'
+
+    fields = ('name', 'is_private')
+
+    def get_success_url(self):
+        return resolve_url('playlist:playlist_detail', pk=self.object.pk)
+
+
 @login_required
 @require_POST
 def like(request):
     if request.method == 'POST':
         user = request.user
+        # todo del slug, get by tag
         slug = request.POST.get('slug', None)
         playlist = get_object_or_404(Playlist, slug=slug)
 

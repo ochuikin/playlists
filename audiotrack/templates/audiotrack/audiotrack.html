@@ -1,15 +1,62 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+{% block head %}
+<link type="text/css" rel="stylesheet" href="{% static 'audiotrack/css/tracklist.css' %}"/>
+{% endblock %}
+
 {% block title %}
-    Title:
-    <div> {{ audiotrack.name }} </div>
-    <div> {{ audiotrack.url }} </div>
+<div> {{ audiotrack.name }}</div>
 {% endblock %}
 
 {% block content %}
+
+<script src="{% static 'audiotrack/js/audiotrack.js' %}"></script>
+
+
+<div> {{ audiotrack.url }}</div>
+
 {% if audiotrack.author == user %}
-    <div>
-        <a href="{% url 'audiotrack:modify' pk=audiotrack.id %}">Modify</a>
-    </div>
+<div>
+    <a href="{% url 'audiotrack:modify' pk=audiotrack.id %}">Modify</a>
+</div>
 {% endif %}
+
+{% for tagg in audiotrack.tags.all %}
+<div class="chip">
+    {{ tagg.name }}
+</div>
+{% endfor %}
+
+<div>
+    <label>Add to Playlist</label>
+    <select id="choose_playlist" class="browser-default select--item">
+        <option value="" disabled selected>Choose playlist</option>
+
+        {% for plist in playlists %}
+        <option value="{{ plist.id }}">{{ plist.name }}</option>
+
+        {% endfor %}
+
+    </select>
+    <a id="add_track_to_playlist" class="waves-effect waves-light btn select--item"
+       data-token="{{ csrf_token }}" data-url="{% url 'audiotrack:add' %}">Add</a>
+</div>
+
+<div id="result" class="chip">
+</div>
+<div id="audiotrack_data" data-audiotrack-id="{{ audiotrack.id }}"></div>
+
+
+<div class="input-field col s12">
+    <select multiple>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+    <label>Materialize Multiple Select</label>
+  </div>
+
 {% endblock %}

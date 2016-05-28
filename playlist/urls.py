@@ -14,10 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from .views import PlaylistList, PlaylistView, PlaylistCreateView
+from .views import PlaylistList, PlaylistView, PlaylistCreateView, PlaylistUpdate
 
 urlpatterns = [
     url(r'^(?P<pk>\d+)/$', PlaylistView.as_view(), name="playlist_detail"),
+    url(r'^(?P<pk>\d+)/update', PlaylistUpdate.as_view(), name="update"),
     url(r'^$', PlaylistList.as_view(), name="playlist_list"),
     url(r'^create/$', PlaylistCreateView.as_view(), name="playlist_create"),
     url(r'^like/$', 'playlist.views.like', name='like'),

@@ -11,17 +11,13 @@
 <form method="POST">
     {% csrf_token %}
 
-    <div class="input-field col s12">
+    <div>
         {{ form.name }}
     </div>
-
-    <div style="height=100%">
-        {{ form.tags.label_tag }}
-        {{ form.tags|add_class:"browser-default"|attr:"height:100%" }}
+    <div>
+        {{ form.is_private }}
     </div>
-
     <input type="submit" value="Save"/>
-
 </form>
 
 

@@ -33,8 +33,13 @@ li {
   overflow: hidden;
   background: #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
-  margin: 100px auto;
-  width: 352px;
+  margin: 0px auto;
+  width: 25%;
+  high: 100%;
+  position: absolute;
+  right: 0;
+  top: 48px;
+
 }
 .jAudio--player:after {
   content: " ";
@@ -190,7 +195,7 @@ li {
 }
 .jAudio--player .jAudio--playlist .jAudio--playlist-thumb {
   float: left;
-  margin-right: 0.66667rem;
+  margin-right: 0px;
   display: table;
 }
 .jAudio--player .jAudio--playlist .jAudio--playlist-thumb:after {

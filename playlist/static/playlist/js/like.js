@@ -1,4 +1,5 @@
 $(document).ready(function(){
+//todo    get by class, no tag
     var btn = $('#like');
     btn.click(function(){
         $.ajax({

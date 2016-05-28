@@ -19,6 +19,7 @@ class Playlist(models.Model):
     is_private = models.BooleanField(default=True, verbose_name=u'Закрытый плейлист')
 
     likes = models.ManyToManyField(User, related_name='likes')
+
     slug = models.SlugField(default=0)
 
     @property

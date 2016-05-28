@@ -9,12 +9,15 @@ Title:
 
 {% block content %}
 
-<div id="showl">
+<div id="showl" class="chip" >
     {{ playlist.likes.count }}
+
 </div>
-<div>
-    <input type="button" id="like" name="{{ playlist.slug }}" value="Like" data-id="#like" data-url="{% url 'playlist:like' %}" data-token="{{ csrf_token }}"/>
-</div>
+
+<a class="btn-floating btn-large waves-effect waves-light red" id="like" name="{{ playlist.slug }}" value="Like" data-id="#like"
+           data-url="{% url 'playlist:like' %}" data-token="{{ csrf_token }}">
+    <i class="material-icons">star</i>
+</a>
 
 <script src="{% static 'playlist/js/like.js' %}"></script>
 
@@ -25,7 +28,13 @@ Title:
 {% endif %}
 
 <div>
-    <button id="play_it">Play</button>
+    <button id="play_it" class="btn waves-effect waves-light" type="submit" name="action">Play
+        <i class="material-icons right">send</i>
+    </button>
+</div>
+
+<div>
+    Summury length of songs: {{ sum_length }}
 </div>
 
 <table>
@@ -48,7 +57,10 @@ Title:
     </tbody>
 </table>
 
-<div id="player_data" data-songs-urls="{% for audiotrack in playlist.audiotracks.all %}{{audiotrack.url}},{% endfor %}"></div>
+<div id="player_data"
+     data-songs-urls="{% for audiotrack in playlist.audiotracks.all %}
+     {{audiotrack.audio_file.url}},
+     {% endfor %}"></div>
 <script src="{% static 'core/js/jaudio.js' %}"></script>
 
 

@@ -18,11 +18,15 @@ class AudiotrackListForm(forms.Form):
 class AudiotrackCreateForm(forms.Form):
 
     title = forms.CharField(max_length=255)
-    url = forms.CharField(widget=forms.Textarea)
+    url = forms.CharField(widget=forms.Textarea, required=False)
+    audio_file = forms.FileField(required=False)
 
 
+#widget_tweaks
 class AudiotrackModifyForm(forms.ModelForm):
     class Meta:
         model = Audiotrack
-        fields = ('name', 'url')
+        fields = ('name', 'url', 'tags')
+
+
 

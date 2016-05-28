@@ -16,12 +16,16 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth.views import logout, login
+from playlist.views import PlaylistList
+from core.views import RegisterFormView
 
 urlpatterns = [
+    url(r'^$', PlaylistList.as_view(), name="playlist_list"),
     url(r'^admin/', admin.site.urls),
     url(r'^audiotrack/', include('audiotrack.urls', namespace="audiotrack")),
     url(r'^playlists/', include('playlist.urls', namespace="playlist")),
     url(r'^login/$', login, {'template_name': 'registration/login.html'}, name="login"),
     url(r'^logout/$', logout, {'template_name': 'registration/logged.html'}, name="logout"),
+    url(r'^register/$', RegisterFormView.as_view()),
     # url('^', include('django.contrib.auth.urls'))
 ]

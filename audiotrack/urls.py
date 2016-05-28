@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/modify$', AudiotrackModifyView.as_view(), name="modify"),
     url(r'^create/$', AudiotrackCreateView.as_view(), name='audiotrack_create'),
     url(r'^$', AudiotrackList.as_view(), name="audiotrack_list"),
+    url(r'^add/$', 'audiotrack.views.add', name='add'),
 ]
